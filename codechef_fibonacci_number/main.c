@@ -1738,50 +1738,87 @@ COMUN_FUNC_STATICA entero_largo paso_bebe_paso_gigante(entero_largo a,entero_lar
 }
 #endif
 
+int codechef_fibonacii_number_compara(const void * pa, const void * pb) {
+    int r=0;
+    entero_largo a=*(entero_largo*)pa;
+    entero_largo b=*(entero_largo*)pb;
+    if(a<b){
+        r=-1;
+    }
+    else{
+        if(a>b){
+            r=1;
+        }
+    }
+    return r;
+}
+
 COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_largo_sin_signo c,entero_largo_sin_signo p){
     entero_largo_sin_signo r=-1;
     primos_datos *pd = NULL;
-    
+    if (!c ) {
+        return 0;
+    }
+    if (c == 1) {
+        return 1;
+    }
+
     pd = calloc(1, sizeof(primos_datos));
     assert_timeout(pd);
     
     primos_criba_criba(70, NULL, NULL, NULL, NULL, NULL, pd);
     entero_largo_sin_signo x=shanks_tonelli_conguencia_residuo_cuadratico(5, p, pd);
     entero_largo_sin_signo y=((1+x)*((p+1)>>1))%p;
-    entero_largo_sin_signo z=c*x;
+    entero_largo_sin_signo z=(c*x)%p;
     entero_largo_sin_signo discriminante=z*z+4;
     entero_largo simbolo_jacobi=shanks_tonelli_simbolo_jacobi(discriminante, p);
     entero_largo_sin_signo u=COMUN_VALOR_INVALIDO;
     if(simbolo_jacobi>=0){
         if(simbolo_jacobi){
             u=shanks_tonelli_conguencia_residuo_cuadratico(discriminante, p, pd);
-        }else{
+        } else {
             u=0;
         }
         
+        /*
         entero_largo y_n1=primalidad_normalizar_signo_modulo(((entero_largo)z-(entero_largo)u)>>1,p);
-        entero_largo y_n2=((entero_largo)z+(entero_largo)u)>>1;
-        entero_largo n1=paso_bebe_paso_gigante(y_n1, u, p);
-        assert_timeout(n1>0);
-        entero_largo n2=paso_bebe_paso_gigante(y_n2, u, p);
-        assert_timeout(n2>0);
-        
+        entero_largo y_n2=(((entero_largo)z+(entero_largo)u)>>1)%p;
+         */
+        entero_largo y_n1=primalidad_normalizar_signo_modulo(((entero_largo)z-(entero_largo)u)*((p+1)>>1),p);
+        entero_largo y_n2=(((entero_largo)z+(entero_largo)u)*((p+1)>>1))%p;
+        entero_largo n1=paso_bebe_paso_gigante(y,y_n1, p);
+        entero_largo n2=paso_bebe_paso_gigante(y,y_n2, p);
+        assert_timeout(n1>0 || n2>0);
+
         entero_largo p_menos_1=p-1;
         entero_largo d=2;
-        entero_largo y_a_la_d=1;
+        entero_largo y_a_la_d=(y*y)%p;
         entero_largo m=COMUN_VALOR_INVALIDO;
+
         while(d*d<=p_menos_1){
-            if(!(p_menos_1%d) && y_a_la_d==1){
+            entero_largo d_inv=p_menos_1/d;
+            if((!(p_menos_1%d) && y_a_la_d==1)){
                 m=d;
+                break;
+            }
+            if((!(p_menos_1%d_inv) && primalidad_exp_mod(y, d_inv, p)==1)){
+                m=d_inv;
                 break;
             }
             y_a_la_d=(y_a_la_d*y)%p;
             d++;
         }
-        
+
         assert_timeout(m!=COMUN_VALOR_INVALIDO);
         
-        n1=comun_min(n1, n2);
+        if(n1<0){
+            n1=n2;
+        }
+        else{
+            if(n2>0){
+                n1=comun_min(n1, n2);
+            }
+        }
         entero_largo n_par=COMUN_VALOR_INVALIDO;
         if(n1&1){
             if(m&1){
@@ -1811,7 +1848,7 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
             r=-1;
         }
     }
-    
+
     return r;
 }
 

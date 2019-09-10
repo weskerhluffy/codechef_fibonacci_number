@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3049A3A22321221100790895 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3049A3A12321221100790895 /* main.cpp */; };
 		30FAF36423168701008F3BF3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FAF36323168701008F3BF3 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3049A39D2321221100790895 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		30FAF35E23168701008F3BF3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -23,11 +33,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3049A39F2321221100790895 /* shame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shame; sourceTree = BUILT_PRODUCTS_DIR; };
+		3049A3A12321221100790895 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30FAF36023168701008F3BF3 /* codechef_fibonacci_number */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = codechef_fibonacci_number; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FAF36323168701008F3BF3 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3049A39C2321221100790895 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FAF35D23168701008F3BF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,10 +57,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3049A3A02321221100790895 /* shame */ = {
+			isa = PBXGroup;
+			children = (
+				3049A3A12321221100790895 /* main.cpp */,
+			);
+			path = shame;
+			sourceTree = "<group>";
+		};
 		30FAF35723168700008F3BF3 = {
 			isa = PBXGroup;
 			children = (
 				30FAF36223168701008F3BF3 /* codechef_fibonacci_number */,
+				3049A3A02321221100790895 /* shame */,
 				30FAF36123168701008F3BF3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				30FAF36023168701008F3BF3 /* codechef_fibonacci_number */,
+				3049A39F2321221100790895 /* shame */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +94,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3049A39E2321221100790895 /* shame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3049A3A52321221100790895 /* Build configuration list for PBXNativeTarget "shame" */;
+			buildPhases = (
+				3049A39B2321221100790895 /* Sources */,
+				3049A39C2321221100790895 /* Frameworks */,
+				3049A39D2321221100790895 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shame;
+			productName = shame;
+			productReference = 3049A39F2321221100790895 /* shame */;
+			productType = "com.apple.product-type.tool";
+		};
 		30FAF35F23168701008F3BF3 /* codechef_fibonacci_number */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30FAF36723168701008F3BF3 /* Build configuration list for PBXNativeTarget "codechef_fibonacci_number" */;
@@ -91,6 +137,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "ernesto alvarado";
 				TargetAttributes = {
+					3049A39E2321221100790895 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					30FAF35F23168701008F3BF3 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -109,11 +158,20 @@
 			projectRoot = "";
 			targets = (
 				30FAF35F23168701008F3BF3 /* codechef_fibonacci_number */,
+				3049A39E2321221100790895 /* shame */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3049A39B2321221100790895 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3049A3A22321221100790895 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FAF35C23168701008F3BF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,6 +183,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3049A3A32321221100790895 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3049A3A42321221100790895 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		30FAF36523168701008F3BF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -253,6 +327,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3049A3A52321221100790895 /* Build configuration list for PBXNativeTarget "shame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3049A3A32321221100790895 /* Debug */,
+				3049A3A42321221100790895 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30FAF35B23168701008F3BF3 /* Build configuration list for PBXProject "codechef_fibonacci_number" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
