@@ -129,7 +129,7 @@ inline int reverse(int x, int p)
     return powmod(x, p - 2, p);
 }
 
-map<int, int> hash[2];
+map<int, int> hashi[2];
 
 inline int solve(int a, int c, int p, int n, int sqrtP)
 {
@@ -161,8 +161,8 @@ inline int solve(int a, int c, int p, int n, int sqrtP)
             int ay = (long long)target * reverse(mul, p) % p;
             int odd = n ^ (x * sqrtP & 1);
             //fprintf(stderr, "			odd = %d, ay = %d, target = %d, mul = %d\n", odd, ay, target, reverse(mul, p));
-            if (hash[odd].count(ay)) {
-                int candidate = x * sqrtP + hash[odd][ay];
+            if (hashi[odd].count(ay)) {
+                int candidate = x * sqrtP + hashi[odd][ay];
                 //fprintf(stderr, "			candidate = %d\n", candidate);
                 if (ret == -1 || ret > candidate) {
                     ret = candidate;
@@ -195,11 +195,11 @@ inline int solve(int c, int p)
     //fprintf(stderr, "newC = %d\n", c);
     int sqrtP = (int)sqrt(p) + 1;
     int mul = 1;
-    hash[0].clear();
-    hash[1].clear();
+    hashi[0].clear();
+    hashi[1].clear();
     for (int x = 0; x < sqrtP; ++ x) {
-        if (!hash[x & 1].count(mul)) {
-            hash[x & 1][mul] = x;
+        if (!hashi[x & 1].count(mul)) {
+            hashi[x & 1][mul] = x;
             //fprintf(stderr, "cached: %d %d: %d\n", x & 1, mul, x);
         }
         multiply(mul, a, p);
@@ -219,7 +219,7 @@ inline int solve(int c, int p)
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
+//    freopen("input.txt", "r", stdin);
     
     int T;
     for (scanf("%d", &T); T --;) {
