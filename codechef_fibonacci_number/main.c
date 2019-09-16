@@ -722,7 +722,7 @@ COMUN_FUNC_STATICA natural primos_criba_criba(natural limite,
 
 #if 1
 COMUN_FUNC_STATICA entero_largo e216_algoritmo_euclidiano_extendido(entero_largo a,entero_largo b, entero_largo *xp
-//                                                            ,entero_largo *yp
+                                                            ,entero_largo *yp
 ){
     entero_largo x=0,y=1,u=1,v=0;
     while(a){
@@ -738,7 +738,7 @@ COMUN_FUNC_STATICA entero_largo e216_algoritmo_euclidiano_extendido(entero_largo
         v=n;
     }
     *xp=x;
-    //    *yp=y;
+        *yp=y;
     return b;
 }
 
@@ -746,7 +746,7 @@ COMUN_FUNC_STATICA natural e216_inverso_multiplicativo_modular(entero_largo a,en
     entero_largo r=0;
     entero_largo x;
     entero_largo g= e216_algoritmo_euclidiano_extendido(a, m,&x
-                                                        //                                        , comun_calloc_local(entero_largo)
+                                                                                                , comun_calloc_local(entero_largo)
                                                         );
     if(g==1){
         r=x%m;
@@ -1753,6 +1753,14 @@ int codechef_fibonacii_number_compara(const void * pa, const void * pb) {
     return r;
 }
 
+COMUN_FUNC_STATICA entero_largo codechef_fibonacci_valida(entero_largo n,entero_largo p, entero_largo x, entero_largo y){
+    entero_largo x_inv=e216_inverso_multiplicativo_modular(x, p);
+    entero_largo dos_inv=(p+1)>>1;
+    entero_largo y_inv=primalidad_mul_mod(primalidad_normalizar_signo_modulo(1-x, p), dos_inv, p);
+//    entero_largo r=((primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p))*x_inv)%p;
+    entero_largo r=primalidad_mul_mod(primalidad_normalizar_signo_modulo(primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p), p),x_inv,p);
+    return r;
+}
 COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_largo_sin_signo c,entero_largo_sin_signo p){
     entero_largo_sin_signo r=-1;
     primos_datos *pd = NULL;
@@ -1852,6 +1860,9 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
     r=comun_min((entero_largo_sin_signo)n_par, (entero_largo_sin_signo)n_impar);
     if(r==COMUN_VALOR_INVALIDO){
         r=-1;
+    }
+    else{
+        assert_timeout(c==codechef_fibonacci_valida(r, p, x, y));
     }
     
     return r;
