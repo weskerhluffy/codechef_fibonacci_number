@@ -1761,6 +1761,16 @@ COMUN_FUNC_STATICA entero_largo codechef_fibonacci_valida(entero_largo n,entero_
     entero_largo r=primalidad_mul_mod(primalidad_normalizar_signo_modulo(primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p), p),x_inv,p);
     return r;
 }
+COMUN_FUNC_STATICA bool codechef_fibonacci_valida_no_hay_solucion(entero_largo p, entero_largo x, entero_largo y, entero_largo c){
+    bool r=verdadero;
+    for(entero_largo n=2;n<p;n++){
+        if(codechef_fibonacci_valida(n, p, x, y)==c){
+            r=falso;
+            break;
+        }
+    }
+    return r;
+}
 COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_largo_sin_signo c,entero_largo_sin_signo p){
     entero_largo_sin_signo r=-1;
     primos_datos *pd = NULL;
@@ -1790,9 +1800,8 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
             m=d;
             break;
         }
-        if((!(p_menos_1%d_inv) && primalidad_exp_mod(y, d_inv, p)==1)){
+        if((!(p_menos_1%d_inv) && primalidad_exp_mod(y, d_inv, p)==1) && (m==COMUN_VALOR_INVALIDO || d_inv<m)){
             m=d_inv;
-            break;
         }
         y_a_la_d=(y_a_la_d*y)%p;
         d++;
@@ -1824,9 +1833,10 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
             //        entero_largo y_n2=(((entero_largo)z+(entero_largo)u)*((p+1)>>1))%p;
             entero_largo n1=paso_bebe_paso_gigante(y,y_n1, p);
             entero_largo n2=paso_bebe_paso_gigante(y,y_n2, p);
-//            assert_timeout(n1>0 || n2>0);
-            
-            
+
+            if(n1<0 && n2<0){
+                continue;
+            }
             if(n1<0){
                 n1=n2;
             }
@@ -1860,6 +1870,7 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
     r=comun_min((entero_largo_sin_signo)n_par, (entero_largo_sin_signo)n_impar);
     if(r==COMUN_VALOR_INVALIDO){
         r=-1;
+        assert_timeout(codechef_fibonacci_valida_no_hay_solucion(p, x, y, c));
     }
     else{
         assert_timeout(c==codechef_fibonacci_valida(r, p, x, y));
