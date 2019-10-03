@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30FAF35F23168701008F3BF3"
-               BuildableName = "codechef_fibonacci_number"
-               BlueprintName = "codechef_fibonacci_number"
+               BlueprintIdentifier = "30733D092344AD1600B3E832"
+               BuildableName = "shame1"
+               BlueprintName = "shame1"
                ReferencedContainer = "container:codechef_fibonacci_number.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF35F23168701008F3BF3"
-            BuildableName = "codechef_fibonacci_number"
-            BlueprintName = "codechef_fibonacci_number"
+            BlueprintIdentifier = "30733D092344AD1600B3E832"
+            BuildableName = "shame1"
+            BlueprintName = "shame1"
             ReferencedContainer = "container:codechef_fibonacci_number.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,16 +55,16 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF35F23168701008F3BF3"
-            BuildableName = "codechef_fibonacci_number"
-            BlueprintName = "codechef_fibonacci_number"
+            BlueprintIdentifier = "30733D092344AD1600B3E832"
+            BuildableName = "shame1"
+            BlueprintName = "shame1"
             ReferencedContainer = "container:codechef_fibonacci_number.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "STDIN"
-            value = "/Users/ernestoalvarado/eworkspace/codechef_fibonacci_number/codechef_fibonacci_number/in01.txt"
+            value = "/Users/ernestoalvarado/eworkspace/codechef_fibonacci_number/codechef_fibonacci_number/in01b.txt"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -81,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "30FAF35F23168701008F3BF3"
-            BuildableName = "codechef_fibonacci_number"
-            BlueprintName = "codechef_fibonacci_number"
+            BlueprintIdentifier = "30733D092344AD1600B3E832"
+            BuildableName = "shame1"
+            BlueprintName = "shame1"
             ReferencedContainer = "container:codechef_fibonacci_number.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

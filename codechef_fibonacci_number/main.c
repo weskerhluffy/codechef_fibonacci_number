@@ -493,6 +493,7 @@ return r; \
 }
 
 comun_compara_tipo(natural)
+comun_compara_tipo(entero_largo)
 
 COMUN_FUNC_STATICA natural comun_encuentra_divisores(natural n,
                                                      natural *divisores, natural divisores_tam) {
@@ -722,8 +723,8 @@ COMUN_FUNC_STATICA natural primos_criba_criba(natural limite,
 
 #if 1
 COMUN_FUNC_STATICA entero_largo e216_algoritmo_euclidiano_extendido(entero_largo a,entero_largo b, entero_largo *xp
-                                                            ,entero_largo *yp
-){
+                                                                    ,entero_largo *yp
+                                                                    ){
     entero_largo x=0,y=1,u=1,v=0;
     while(a){
         entero_largo q=b/a;
@@ -738,7 +739,7 @@ COMUN_FUNC_STATICA entero_largo e216_algoritmo_euclidiano_extendido(entero_largo
         v=n;
     }
     *xp=x;
-        *yp=y;
+    *yp=y;
     return b;
 }
 
@@ -746,7 +747,7 @@ COMUN_FUNC_STATICA natural e216_inverso_multiplicativo_modular(entero_largo a,en
     entero_largo r=0;
     entero_largo x;
     entero_largo g= e216_algoritmo_euclidiano_extendido(a, m,&x
-                                                                                                , comun_calloc_local(entero_largo)
+                                                        , comun_calloc_local(entero_largo)
                                                         );
     if(g==1){
         r=x%m;
@@ -1757,7 +1758,7 @@ COMUN_FUNC_STATICA entero_largo codechef_fibonacci_valida(entero_largo n,entero_
     entero_largo x_inv=e216_inverso_multiplicativo_modular(x, p);
     entero_largo dos_inv=(p+1)>>1;
     entero_largo y_inv=primalidad_mul_mod(primalidad_normalizar_signo_modulo(1-x, p), dos_inv, p);
-//    entero_largo r=((primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p))*x_inv)%p;
+    //    entero_largo r=((primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p))*x_inv)%p;
     entero_largo r=primalidad_mul_mod(primalidad_normalizar_signo_modulo(primalidad_exp_mod(y,n,p)-primalidad_exp_mod(y_inv,n,p), p),x_inv,p);
     return r;
 }
@@ -1814,7 +1815,7 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
     
     entero_largo n_par=COMUN_VALOR_INVALIDO;
     entero_largo n_impar=COMUN_VALOR_INVALIDO;
-
+    
     for(natural impar=falso;impar<2;impar++){
         int factor_discriminante=impar?1:-1;
         entero_largo_sin_signo discriminante=(primalidad_mul_mod(z, z, p)-4*factor_discriminante)%p;
@@ -1826,43 +1827,41 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
             } else {
                 u=0;
             }
-            
-            entero_largo y_n1=primalidad_mul_mod(primalidad_normalizar_signo_modulo((entero_largo)z-(entero_largo)u,p), (p+1)>>1, p);
-            //        entero_largo y_n1=primalidad_normalizar_signo_modulo(((entero_largo)z-(entero_largo)u)*((p+1)>>1),p);
-            entero_largo y_n2=primalidad_mul_mod((entero_largo)z+(entero_largo)u, (p+1)>>1, p);
-            //        entero_largo y_n2=(((entero_largo)z+(entero_largo)u)*((p+1)>>1))%p;
-            entero_largo n1=paso_bebe_paso_gigante(y,y_n1, p);
-            entero_largo n2=paso_bebe_paso_gigante(y,y_n2, p);
-
-            if(n1<0 && n2<0){
-                continue;
-            }
-            if(n1<0){
-                n1=n2;
-            }
-            else{
-                if(n2>0){
-                    n1=comun_min(n1, n2);
+            entero_largo ys[]={primalidad_mul_mod(primalidad_normalizar_signo_modulo((entero_largo)z-(entero_largo)u,p), (p+1)>>1, p),primalidad_mul_mod((entero_largo)z+(entero_largo)u, (p+1)>>1, p)};
+            entero_largo ns[2]={0};
+            natural ns_cnt=0;
+            for(natural i=0;i<2;i++){
+                entero_largo n=paso_bebe_paso_gigante(y, ys[i], p);
+                if(n>=0){
+                    ns[ns_cnt++]=n;
                 }
             }
-            if(impar){
-                if(n1&1){
-                    n_impar=n1;
-                }
-                else{
-                    if(m&1){
-                        n_impar=n1+m;
-                    }
-                }
-            }
-            else{
-                if(n1&1){
-                    if(m&1){
-                        n_par=n1+m;
+            qsort(ns, ns_cnt, sizeof(entero_largo), comun_compara_entero_largo);
+            for(natural i=0;i<ns_cnt;i++){
+                entero_largo n=ns[i];
+                if(impar){
+                    if(n_impar==COMUN_VALOR_INVALIDO){
+                        if(n&1){
+                            n_impar=n;
+                        }
+                        else{
+                            if(m&1){
+                                n_impar=n+m;
+                            }
+                        }
                     }
                 }
                 else{
-                    n_par=n1;
+                    if(n_par==COMUN_VALOR_INVALIDO){
+                        if(n&1){
+                            if(m&1){
+                                n_par=n+m;
+                            }
+                        }
+                        else{
+                            n_par=n;
+                        }
+                    }
                 }
             }
         }
@@ -1870,7 +1869,7 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
     r=comun_min((entero_largo_sin_signo)n_par, (entero_largo_sin_signo)n_impar);
     if(r==COMUN_VALOR_INVALIDO){
         r=-1;
-        assert_timeout(codechef_fibonacci_valida_no_hay_solucion(p, x, y, c));
+//        assert_timeout(codechef_fibonacci_valida_no_hay_solucion(p, x, y, c));
     }
     else{
         assert_timeout(c==codechef_fibonacci_valida(r, p, x, y));

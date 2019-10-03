@@ -18,7 +18,6 @@
 #define Rg register
 #define ll long long
 using namespace std;
-const int inf=0x7fffffff;
 ll w,a,mod;
 inline int dec(int x,int y){return x<y?x-y+mod:x-y;}
 inline int inc(int x,int y){return 0ll+x+y>=mod?0ll+x+y-mod:x+y;}
@@ -34,9 +33,11 @@ struct cp{ int x,y; inline cp(Rg int xx,Rg int yy){x=xx,y=yy;}
 inline int qpow(Rg cp x,Rg int p){ Rg cp s(1,0); //向量快速乘？【逃
     for(;p;p>>=1,x=x*x) if(p&1) s=s*x; return s.x;
 }
-inline int Sqrt(int x){ if(!x) return 0; // 0 的情况返回 0 就好了
+inline int Sqrt(int x) {
+    if(!x) return 0; // 0 的情况返回 0 就好了
     if(qpow(x,(mod-1)>>1)==mod-1) return -1; // 无解返回 -1
-    while(1){ a=mul(rand(),rand()),w=dec(mul(a,a),x);
+    while(1){
+        a=mul(rand(),rand()),w=dec(mul(a,a),x);
         if(qpow(w,(mod-1)>>1)==mod-1) return qpow(cp(a,1),(mod+1)>>1);
     }
 }
@@ -88,6 +89,26 @@ int main()
     srand(time(NULL));
     int t;
     ll c,two,five,q;
+#ifdef __APPLE__
+    if (getenv("STDIN")) {
+        if (!freopen(getenv("STDIN"), "r", stdin)) {
+            printf("no se pudo stdin con %s",getenv("STDIN"));
+            exit (1);
+        }
+    }
+    if (getenv("STDOUT")) {
+        if (!freopen(getenv("STDOUT"), "w", stdout)) {
+            printf("no se pudo stdin con %s",getenv("STDOUT"));
+            exit (1);
+        }
+    }
+    if (getenv("STDERR")) {
+        if (!freopen(getenv("STDERR"), "w", stderr)) {
+            printf("no se pudo stdin con %s",getenv("STDERR"));
+            exit (1);
+        }
+    }
+#endif
     scanf("%d",&t);
     while(t--)
     {
