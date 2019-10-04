@@ -64,7 +64,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "STDIN"
-            value = "/Users/ernestoalvarado/eworkspace/codechef_fibonacci_number/codechef_fibonacci_number/in01.txt"
+            value = "/Users/ernestoalvarado/eworkspace/codechef_fibonacci_number/codechef_fibonacci_number/in05a.txt"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

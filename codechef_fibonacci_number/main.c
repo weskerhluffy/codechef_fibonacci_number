@@ -1812,13 +1812,12 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
         m=p_menos_1;
     }
     
-    
     entero_largo n_par=COMUN_VALOR_INVALIDO;
     entero_largo n_impar=COMUN_VALOR_INVALIDO;
     
     for(natural impar=falso;impar<2;impar++){
         int factor_discriminante=impar?1:-1;
-        entero_largo_sin_signo discriminante=(primalidad_mul_mod(z, z, p)-4*factor_discriminante)%p;
+        entero_largo_sin_signo discriminante=primalidad_normalizar_signo_modulo(primalidad_mul_mod(z, z, p)-4*factor_discriminante,p);
         entero_largo simbolo_jacobi=shanks_tonelli_simbolo_jacobi(discriminante, p);
         entero_largo_sin_signo u=COMUN_VALOR_INVALIDO;
         if(simbolo_jacobi>=0){
@@ -1872,7 +1871,7 @@ COMUN_FUNC_STATICA entero_largo_sin_signo codechef_fibonacci_number_core(entero_
 //        assert_timeout(codechef_fibonacci_valida_no_hay_solucion(p, x, y, c));
     }
     else{
-        assert_timeout(c==codechef_fibonacci_valida(r, p, x, y));
+//        assert_timeout(c==codechef_fibonacci_valida(r, p, x, y));
     }
     
     return r;
