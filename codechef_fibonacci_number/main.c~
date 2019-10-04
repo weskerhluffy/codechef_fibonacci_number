@@ -169,7 +169,8 @@ comun_log_debug_func (const char *format, ...)
   va_list arg;
   va_list arg2;
   const char *PEDAZO_TIMESTAMP_HEADER = "tiempo: %s; ";
-  const char *HEADER = "archivo: %s; funcion: %s; linea %d; nivel: %zd 8====D ";
+  const char *HEADER =
+    "archivo: %s; funcion: %s; linea %d; nivel: %zd 8====D ";
   char formato[HEAG_LOG_MAX_TAM_CADENA + sizeof (HEADER)
 	       + sizeof (PEDAZO_TIMESTAMP_HEADER)] = { '\0' };
   char pedazo_timestamp[sizeof (PEDAZO_TIMESTAMP_HEADER) + 100] = { '\0' };
@@ -194,7 +195,8 @@ comun_log_debug_func (const char *format, ...)
 
 #ifdef COMUN_LOG
 COMUN_FUNC_STATICA char *
-comun_arreglo_a_cadena (tipo_dato * arreglo, natural tam_arreglo, char *buffer)
+comun_arreglo_a_cadena (tipo_dato * arreglo, natural tam_arreglo,
+			char *buffer)
 {
   int i;
   char *ap_buffer = NULL;
@@ -293,7 +295,8 @@ comun_arreglo_a_cadena_entero_largo_sin_signo (entero_largo_sin_signo *
 }
 #else
 COMUN_FUNC_STATICA char *
-comun_arreglo_a_cadena (tipo_dato * arreglo, natural tam_arreglo, char *buffer)
+comun_arreglo_a_cadena (tipo_dato * arreglo,
+			natural tam_arreglo, char *buffer)
 {
   return NULL;
 }
@@ -369,7 +372,8 @@ comun_lee_matrix_long_stdin (tipo_dato * matrix,
 	 cadena_numero_actual)
     {
       numero =
-	(tipo_dato) strtol (siguiente_cadena_numero, &cadena_numero_actual, 10);
+	(tipo_dato) strtol (siguiente_cadena_numero,
+			    &cadena_numero_actual, 10);
       if (cadena_numero_actual == siguiente_cadena_numero)
       {
 	break;
@@ -567,9 +571,10 @@ return r; \
 }
 
 comun_compara_tipo (natural) comun_compara_tipo (entero_largo)
-  COMUN_FUNC_STATICA natural
-comun_encuentra_divisores (natural n,
-			   natural * divisores, natural divisores_tam)
+     COMUN_FUNC_STATICA
+       natural
+     comun_encuentra_divisores (natural n,
+				natural * divisores, natural divisores_tam)
 {
   natural divisores_cnt = 0;
   natural i = 0;
@@ -792,7 +797,8 @@ primos_criba_criba (natural limite,
 		    primos_criba_divisible_encontrado_cb
 		    divisible_encontrado_cb,
 		    primos_criba_no_divisible_encontrado_cb
-		    no_divisible_encontrado_cb, void *cb_ctx, primos_datos * pd)
+		    no_divisible_encontrado_cb, void *cb_ctx,
+		    primos_datos * pd)
 {
   bool *primos_criba_es_primo = pd->primos_criba_es_primo;
   natural *primos_criba = pd->primos_criba;
@@ -1145,11 +1151,13 @@ XXH_swap64 (U64 x)
     | ((x << 8) & 0x000000ff00000000ULL)
     | ((x >> 8) & 0x00000000ff000000ULL)
     | ((x >> 24) & 0x0000000000ff0000ULL)
-    | ((x >> 40) & 0x000000000000ff00ULL) | ((x >> 56) & 0x00000000000000ffULL);
+    | ((x >> 40) & 0x000000000000ff00ULL)
+    | ((x >> 56) & 0x00000000000000ffULL);
 }
 
 FORCE_INLINE U64
-XXH_readLE64_align (const void *ptr, XXH_endianess endian, XXH_alignment align)
+XXH_readLE64_align (const void *ptr, XXH_endianess endian,
+		    XXH_alignment align)
 {
   if (align == XXH_unaligned)
     return endian == XXH_littleEndian ?
@@ -1184,7 +1192,8 @@ XXH_swap32 (U32 x)
 }
 
 FORCE_INLINE U32
-XXH_readLE32_align (const void *ptr, XXH_endianess endian, XXH_alignment align)
+XXH_readLE32_align (const void *ptr, XXH_endianess endian,
+		    XXH_alignment align)
 {
   if (align == XXH_unaligned)
     return endian == XXH_littleEndian ?
@@ -1432,7 +1441,8 @@ XXH64 (const void *input, size_t len, unsigned long long seed)
     return XXH64_endian_align (input, len, seed, XXH_littleEndian,
 			       XXH_unaligned);
   else
-    return XXH64_endian_align (input, len, seed, XXH_bigEndian, XXH_unaligned);
+    return XXH64_endian_align (input, len, seed, XXH_bigEndian,
+			       XXH_unaligned);
 #endif
 }
 
@@ -1906,7 +1916,8 @@ hash_map_robin_hood_back_shift_reemplazar (hm_rr_bs_tabla * ht, void *llave,
 }
 
 static inline void
-hash_map_robin_hood_back_shift_insertar_nuevo (hm_rr_bs_tabla * ht, void *llave,
+hash_map_robin_hood_back_shift_insertar_nuevo (hm_rr_bs_tabla * ht,
+					       void *llave,
 #ifdef HASH_MAP_ROUND_ROBIN_HASHEAR
 					       natural llave_tam,
 #endif
@@ -2131,14 +2142,14 @@ codechef_fibonacci_number_core (entero_largo_sin_signo c,
     entero_largo_sin_signo discriminante =
       primalidad_normalizar_signo_modulo (primalidad_mul_mod (z, z, p) -
 					  4 * factor_discriminante, p);
-    entero_largo simbolo_jacobi =
-      shanks_tonelli_simbolo_jacobi (discriminante, p);
+    entero_largo simbolo_jacobi = shanks_tonelli_simbolo_jacobi (discriminante, p);
     entero_largo_sin_signo u = COMUN_VALOR_INVALIDO;
     if (simbolo_jacobi >= 0)
     {
       if (simbolo_jacobi)
       {
-	u = shanks_tonelli_conguencia_residuo_cuadratico (discriminante, p, pd);
+	u =
+	  shanks_tonelli_conguencia_residuo_cuadratico (discriminante, p, pd);
       }
       else
       {
