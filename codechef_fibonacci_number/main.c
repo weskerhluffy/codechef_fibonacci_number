@@ -6,6 +6,16 @@
 //  Copyright © 2019 ernesto alvarado. All rights reserved.
 //
 
+// XXX: https://www.codechef.com/problems/FN
+// XXX: https://discuss.codechef.com/t/fn-editorial/3403
+// XXX: http://php.bubble.ro/fibonacci/
+// XXX: http://www.javascripter.net/math/calculators/divisorscalculator.htm
+// XXX: https://www.alpertron.com.ar/DILOG.HTM
+// XXX: https://planetcalc.com/3311/
+// XXX: http://mathonline.wikidot.com/a-closed-form-of-the-fibonacci-sequence
+// XXX: http://www.numbertheory.org/php/order.html
+// XXX: https://stackoverflow.com/questions/36681259/calculating-nth-fibonacci-number-modulo-m-using-golden-ratio-in-c
+
 #if 1
 #define _GNU_SOURCE
 #include <stdio.h>
